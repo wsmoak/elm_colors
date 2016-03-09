@@ -3,6 +3,7 @@ defmodule ElmColors.UserSocket do
 
   ## Channels
   # channel "rooms:*", ElmColors.RoomChannel
+  channel "colors:lobby", ElmColors.ColorChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
