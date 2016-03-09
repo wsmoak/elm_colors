@@ -3,10 +3,17 @@ defmodule ElmColors.ColorChannel do
 
   def join("colors:lobby", payload, socket) do
     if authorized?(payload) do
+      send self(), :after_join
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
+  end
+
+  def handle_info(:after_join, socket) do
+    colors = "blue"
+    push socket, "set_colors", %{colors: colors}
+    {:noreply, socket}
   end
 
   # Channels can be used in a request/response fashion

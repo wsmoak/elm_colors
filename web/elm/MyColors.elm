@@ -42,3 +42,5 @@ init = ("", Effects.none)
 port tasks : Signal (Task Never ())
 port tasks =
     app.tasks
+
+port colors : Signal Model
