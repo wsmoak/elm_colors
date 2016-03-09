@@ -1,20 +1,29 @@
 module MyColors where
 
 import StartApp
-import Html
+import Html exposing (Html, Attribute, text, div)
+import Html.Attributes exposing (style)
 import Effects exposing (Effects, Never)
 import Task exposing ( Task )
 
 app =
     StartApp.start { init = init, view = view, update = update, inputs = [] }
 
-main : Signal Html.Html
+main : Signal Html
 main =
     app.html
 
-view : Signal.Address action -> model -> Html.Html
+the_style : Attribute
+the_style =
+  style
+    [ ("backgroundColor", "rgb(200,255,175)")
+    , ("height", "90px")
+    , ("width", "50%")
+    ]
+
+view : Signal.Address action -> model -> Html
 view address model =
-  Html.text "Hello from Elm StartApp!"
+  div [the_style] [text "Hello from Elm StartApp!"]
 
 type alias Model = String
 
@@ -30,6 +39,6 @@ update action model =
 init : (Model, Effects Action)
 init = ("", Effects.none)
 
-port tasks : Signal (Task.Task Never ())
+port tasks : Signal (Task Never ())
 port tasks =
     app.tasks
