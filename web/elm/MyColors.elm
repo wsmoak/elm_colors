@@ -4,43 +4,43 @@ import StartApp
 import Html exposing (Html, Attribute, text, div)
 import Html.Attributes exposing (style)
 import Effects exposing (Effects, Never)
-import Task exposing ( Task )
 
 app =
-    StartApp.start { init = init, view = view, update = update, inputs = [] }
+    StartApp.start { init = init, view = view, update = update, inputs = inputs }
 
 main : Signal Html
 main =
     app.html
 
-the_style : Attribute
-the_style =
+the_style : String -> Attribute
+the_style colors =
   style
-    [ ("backgroundColor", "rgb(200,255,175)")
+    [ ("backgroundColor", colors)
     , ("height", "90px")
     , ("width", "50%")
     ]
 
-view : Signal.Address action -> model -> Html
+view : Signal.Address action -> String -> Html
 view address model =
-  div [the_style] [text "Hello from Elm StartApp!"]
+  div [the_style model] [text "Hello from Elm StartApp!"]
 
 type alias Model = String
 
-inputs : List (Signal action)
-inputs = []
+inputs : List (Signal Action)
+inputs = [incomingActions]
 
-type Action = NoOp
+type Action =  SetColors Model
 
-update : action -> model -> (model, Effects action)
+update : Action -> model -> (String, Effects action)
 update action model =
-  ( model, Effects.none )
+  case action of
+    SetColors colors -> (colors, Effects.none)
 
 init : (Model, Effects Action)
-init = ("", Effects.none)
+init = ("green", Effects.none)
 
-port tasks : Signal (Task Never ())
-port tasks =
-    app.tasks
+incomingActions : Signal Action
+incomingActions =
+  Signal.map SetColors colors
 
 port colors : Signal Model
