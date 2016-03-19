@@ -16,13 +16,15 @@ the_style : String -> Attribute
 the_style colors =
   style
     [ ("backgroundColor", colors)
-    , ("height", "90px")
+    , ("height", "150px")
     , ("width", "50%")
     ]
 
 view : Signal.Address action -> String -> Html
 view address model =
-  div [the_style model] [text "Hello from Elm StartApp!"]
+  div [the_style model]
+   [text "Hello from Elm StartApp! This box will change color as the Phoenix app generates random numbers for red, green, and blue, and pushes a string such as 'rgb(121,239,34)' down the channel to be used as the background color in the stylesheet. Open the JavaScript console to see the messages arrive."
+   ]
 
 type alias Model = String
 

@@ -12,7 +12,7 @@ defmodule ElmColors.ColorChannel do
   end
 
   def handle_info(:after_join, socket) do
-    colors = "blue"
+    colors = "rgb(0,0,0)"
     push socket, "set_colors", %{colors: colors}
     {:noreply, socket}
   end
