@@ -20,4 +20,10 @@ Open the JavaScript console and you will see
 * the Phoenix app push a list of random color numbers at random 1-10 second intervals
 * the background of the div change color when a message is received
 
+The interesting bits of code are
+
+* https://github.com/wsmoak/elm_colors/blob/master/web/elm/MyColors.elm
+* https://github.com/wsmoak/elm_colors/blob/master/web/channels/color_channel.ex
+* https://github.com/wsmoak/elm_colors/blob/master/web/static/js/app.js
+
 ![Elm Colors Example](http://wsmoak.net/images/2016/03/elm_colors_example.png)
