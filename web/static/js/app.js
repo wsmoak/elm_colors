@@ -21,7 +21,7 @@ import "phoenix_html"
 import socket from "./socket"
 
 var elmDiv = document.getElementById('elm-main');
-var initialState = {colors: "red"}
+var initialState = {colors: ["255","0","0"] }
 var elmApp = Elm.embed(Elm.MyColors, elmDiv, initialState);
 
 let channel = socket.channel("colors:lobby", {})

@@ -12,7 +12,7 @@ defmodule ElmColors.ColorChannel do
   end
 
   def handle_info(:after_join, socket) do
-    colors = "rgb(0,0,0)"
+    colors = ["0","0","0"]
     push socket, "set_colors", %{colors: colors}
     {:noreply, socket}
   end
@@ -21,7 +21,7 @@ defmodule ElmColors.ColorChannel do
     red = to_string Enum.random(0..255)
     green = to_string Enum.random(0..255)
     blue = to_string Enum.random(0..255)
-    colors = "rgb(" <> red <> "," <> green <> "," <> blue <> ")"
+    colors = [red,green,blue]
     push socket, "set_colors", %{colors: colors}
     Process.send_after(self, :something_happened, Enum.random(1..10) * 1000 )
     {:noreply, socket}
