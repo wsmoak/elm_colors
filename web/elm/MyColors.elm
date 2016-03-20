@@ -13,17 +13,21 @@ main : Signal Html
 main =
     app.html
 
-the_style : Model -> Attribute
-the_style (red,green,blue) =
+the_style : String -> Attribute
+the_style colors =
   style
-    [ ("backgroundColor", concat ["rgb(",red,",",green,",",blue,")"] )
+    [ ("backgroundColor", colors)
     , ("height", "150px")
     , ("width", "50%")
     ]
 
+rgb : Model -> String
+rgb (red,green,blue) =
+  concat ["rgb(",red,",",green,",",blue,")"]
+
 view : Signal.Address action -> Model -> Html
 view address model =
-  div [the_style model]
+  div [the_style (rgb model)]
    [text "Hello from Elm StartApp! This box will change color as the Phoenix app generates random numbers for red, green, and blue, and pushes a list such as [\"121\",\"239\",\"34\"] down the channel to be used as the background color in the stylesheet. Open the JavaScript console to see the messages arrive."
    ]
 
