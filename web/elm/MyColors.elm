@@ -44,7 +44,11 @@ update action model =
     SetColors colors -> (colors, Effects.none)
 
 init : (Model, Effects Action)
-init = ( ("0","255","0") , Effects.none)
+init = ( initialModel , Effects.none)
+
+initialModel : Model
+initialModel =
+  ("0","255","0")
 
 incomingActions : Signal Action
 incomingActions =
